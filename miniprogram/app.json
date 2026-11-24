@@ -1,0 +1,40 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/apply/apply",
+    "pages/my/my",
+    "pages/admin/admin",
+    "pages/agreement/agreement"
+  ],
+  "__usePrivacyCheck__": true,
+  "window": {
+    "backgroundColor": "#F6F7FB",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#2B5D46",
+    "navigationBarTitleText": "会议室预约",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#8A8F99",
+    "selectedColor": "#2B5D46",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "预约首页"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的申请"
+      },
+      {
+        "pagePath": "pages/admin/admin",
+        "text": "借用管理"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

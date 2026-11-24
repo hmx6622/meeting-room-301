@@ -1,0 +1,99 @@
+<!--pages/apply/apply.wxml 预约申请表单-->
+<view class="container">
+
+  <!-- 借用日期 -->
+  <view class="card date-info">
+    <text class="date-label">借用日期</text>
+    <text class="date-value">{{dateStr}}</text>
+  </view>
+
+  <!-- 当天已占用时段提示 -->
+  <view class="card occupied-tip" wx:if="{{occupiedList.length}}">
+    <view class="tip-title">当天已被预约的时段</view>
+    <view class="tip-list">
+      <text wx:for="{{occupiedList}}" wx:key="*this" class="tip-time">{{item}}</text>
+    </view>
+  </view>
+
+  <!-- 表单 -->
+  <view class="card">
+    <view class="form-row">
+      <view class="form-label"><text class="required">*</text>申请人</view>
+      <view class="form-content">
+        <input placeholder="请输入姓名" value="{{form.applicantName}}" data-field="applicantName" bindinput="onInput" />
+      </view>
+    </view>
+
+    <view class="form-row">
+      <view class="form-label"><text class="required">*</text>部门/社团</view>
+      <view class="form-content">
+        <input placeholder="如：校学生会办公室" value="{{form.applicantDept}}" data-field="applicantDept" bindinput="onInput" />
+      </view>
+    </view>
+
+    <view class="form-row">
+      <view class="form-label"><text class="required">*</text>联系电话</view>
+      <view class="form-content">
+        <input type="number" maxlength="11" placeholder="11位手机号" value="{{form.phone}}" data-field="phone" bindinput="onInput" />
+      </view>
+    </view>
+
+    <view class="form-row">
+      <view class="form-label"><text class="required">*</text>使用人数</view>
+      <view class="form-content">
+        <input type="number" placeholder="请输入人数" value="{{form.peopleNum}}" data-field="peopleNum" bindinput="onInput" />
+      </view>
+    </view>
+
+    <view class="form-row">
+      <view class="form-label"><text class="required">*</text>开始时间</view>
+      <view class="form-content">
+        <picker mode="time" value="{{form.startTimeStr}}" start="08:00" end="22:00" bindchange="onStartTimeChange">
+          <view class="{{form.startTimeStr ? 'picker-value' : 'picker-placeholder'}}">
+            {{form.startTimeStr || '请选择（08:00-22:00）'}}
+          </view>
+        </picker>
+      </view>
+    </view>
+
+    <view class="form-row">
+      <view class="form-label"><text class="required">*</text>结束时间</view>
+      <view class="form-content">
+        <picker mode="time" value="{{form.endTimeStr}}" start="08:00" end="22:00" bindchange="onEndTimeChange">
+          <view class="{{form.endTimeStr ? 'picker-value' : 'picker-placeholder'}}">
+            {{form.endTimeStr || '请选择（08:00-22:00）'}}
+          </view>
+        </picker>
+      </view>
+    </view>
+
+    <view class="form-row">
+      <view class="form-label"><text class="required">*</text>借用事由</view>
+      <view class="form-content">
+        <textarea
+          class="reason-input"
+          placeholder="请简要说明活动内容与用途"
+          maxlength="200"
+          value="{{form.useReason}}"
+          data-field="useReason"
+          bindinput="onInput"
+        ></textarea>
+        <view class="word-count">{{form.useReason.length}}/200</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 协议授权勾选：默认不勾选，用户须主动同意后才能提交 -->
+  <view class="agreement-check">
+    <view class="checkbox {{agreed ? 'checked' : ''}}" bindtap="onToggleAgree">
+      <text wx:if="{{agreed}}" class="check-icon">✓</text>
+    </view>
+    <view class="agreement-text" bindtap="onToggleAgree">
+      我已阅读并同意
+      <text class="link" catchtap="openService">《用户服务协议》</text>
+      <text class="link" catchtap="openPrivacy">《隐私政策》</text>
+    </view>
+  </view>
+
+  <button class="btn-primary" loading="{{submitting}}" bindtap="onSubmit">提交申请</button>
+</view>

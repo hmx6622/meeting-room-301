@@ -1,0 +1,17 @@
+{
+  "说明": "reservations 集合不需要手动添加数据，用户提交申请时由 submitReservation 云函数自动生成，本文件仅用于说明字段结构",
+  "roomId": "会议室记录的_id",
+  "applicantOpenid": "申请人openid，云函数自动写入",
+  "applicantName": "申请人姓名",
+  "applicantDept": "部门/社团",
+  "phone": "联系电话",
+  "useReason": "借用事由",
+  "peopleNum": 30,
+  "startTime": 1799000000000,
+  "endTime": 1799003600000,
+  "dateStr": "2026-11-10",
+  "status": "0待审批 1已通过 2已驳回 3已取消",
+  "createTime": "提交时间戳，自动生成",
+  "auditTime": "审批时间戳，自动生成",
+  "auditRemark": "审批备注"
+}

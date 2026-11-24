@@ -1,0 +1,54 @@
+<!--pages/index/index.wxml 首页：会议室信息 + 空闲时段看板-->
+<view class="container">
+
+  <!-- 会议室信息卡片 -->
+  <view class="card room-card">
+    <view class="room-title">{{roomInfo.name || '301会议室'}}</view>
+    <view class="room-line">位置：{{roomInfo.location || '行政楼3层'}}</view>
+    <view class="room-line">容纳：{{roomInfo.capacity || '--'}}人</view>
+    <view class="room-line">设备：{{roomInfo.facilities || '投影、白板、音响'}}</view>
+    <view class="room-status">
+      <view class="status-dot {{roomInfo.enable === false ? 'dot-off' : 'dot-on'}}"></view>
+      <text>{{roomInfo.enable === false ? '已停用预约' : '开放预约中'}}</text>
+    </view>
+  </view>
+
+  <!-- 日期选择 -->
+  <view class="card date-card">
+    <picker mode="date" value="{{currentDate}}" start="{{today}}" bindchange="onDateChange">
+      <view class="date-picker">
+        <text class="date-main">{{currentDate}} {{weekText}}</text>
+        <text class="date-arrow">›</text>
+      </view>
+    </picker>
+    <view class="quick-bar">
+      <view class="quick-btn {{currentDate === today ? 'active' : ''}}" data-days="0" bindtap="onQuickDate">今天</view>
+      <view class="quick-btn {{currentDate === tomorrow ? 'active' : ''}}" data-days="1" bindtap="onQuickDate">明天</view>
+      <view class="quick-btn {{currentDate === dayAfter ? 'active' : ''}}" data-days="2" bindtap="onQuickDate">后天</view>
+    </view>
+  </view>
+
+  <!-- 时段网格 -->
+  <view class="card">
+    <view class="grid-title">时段占用情况（每格1小时）</view>
+    <view class="time-grid">
+      <view
+        wx:for="{{timeSlots}}"
+        wx:key="time"
+        class="time-item {{item.isOccupied ? 'occupied' : 'free'}}"
+      >
+        <text class="slot-time">{{item.time}}</text>
+        <text class="slot-state">{{item.isOccupied ? '已约' : '空闲'}}</text>
+      </view>
+    </view>
+
+    <view class="legend">
+      <view class="legend-item"><view class="legend-dot free"></view>空闲</view>
+      <view class="legend-item"><view class="legend-dot occupied"></view>已预约</view>
+    </view>
+  </view>
+
+  <!-- 申请入口 -->
+  <button class="btn-primary" bindtap="goApply" disabled="{{roomInfo.enable === false}}">立即申请借用</button>
+
+</view>

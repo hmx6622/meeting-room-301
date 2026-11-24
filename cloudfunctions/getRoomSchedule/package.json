@@ -1,0 +1,9 @@
+{
+  "name": "getRoomSchedule",
+  "version": "1.0.0",
+  "description": "查询会议室空闲时段",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

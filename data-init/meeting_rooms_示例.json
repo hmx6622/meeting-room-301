@@ -1,0 +1,7 @@
+{
+  "name": "301会议室",
+  "location": "行政楼3层",
+  "capacity": 50,
+  "facilities": "投影、白板、音响",
+  "enable": true
+}

@@ -1,0 +1,48 @@
+/* pages/my/my.wxss */
+
+.record-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+.record-date {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #1F2329;
+}
+.record-line {
+  display: flex;
+  font-size: 27rpx;
+  line-height: 1.9;
+}
+.line-label {
+  width: 140rpx;
+  color: #8A8F99;
+  flex-shrink: 0;
+}
+.line-value {
+  flex: 1;
+  color: #1F2329;
+}
+.remark {
+  margin-top: 16rpx;
+  padding: 16rpx 20rpx;
+  border-radius: 12rpx;
+  font-size: 25rpx;
+  line-height: 1.6;
+}
+.reject-remark {
+  background: #FDECEB;
+  color: #D54941;
+}
+.pass-remark {
+  background: #F2F4F6;
+  color: #646A73;
+}
+.cancel-btn {
+  margin-top: 24rpx;
+  width: 220rpx;
+  margin-left: auto;
+  margin-right: 0;
+}

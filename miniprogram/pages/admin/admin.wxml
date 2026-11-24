@@ -1,0 +1,72 @@
+<!--pages/admin/admin.wxml 管理员审批页-->
+<view class="container">
+
+  <!-- 非管理员提示 -->
+  <view wx:if="{{!isAdmin && !checking}}" class="empty no-auth">
+    <text class="empty-icon">🔒</text>
+    <view>你没有审批权限</view>
+    <view class="auth-sub">仅管理员可进入本页面，如需权限请联系负责人添加</view>
+  </view>
+
+  <block wx:if="{{isAdmin}}">
+    <!-- 状态切换 tab -->
+    <view class="tab-bar">
+      <view
+        wx:for="{{tabs}}"
+        wx:key="value"
+        class="tab-item {{currentTab === item.value ? 'active' : ''}}"
+        data-value="{{item.value}}"
+        bindtap="onTabChange"
+      >
+        {{item.label}}
+        <text wx:if="{{countMap[item.value]}}" class="tab-badge">{{countMap[item.value]}}</text>
+      </view>
+    </view>
+
+    <!-- 空状态 -->
+    <view wx:if="{{filteredList.length === 0}}" class="empty">
+      <text class="empty-icon">📭</text>
+      <view>暂无相关记录</view>
+    </view>
+
+    <!-- 申请记录卡片 -->
+    <view wx:for="{{filteredList}}" wx:key="_id" class="card admin-card">
+      <view class="record-head">
+        <text class="applicant">{{item.applicantName}}（{{item.applicantDept}}）</text>
+        <text class="tag {{item.statusClass}}">{{item.statusText}}</text>
+      </view>
+
+      <view class="record-line">
+        <text class="line-label">借用日期</text>
+        <text class="line-value">{{item.dateStr}}</text>
+      </view>
+      <view class="record-line">
+        <text class="line-label">借用时段</text>
+        <text class="line-value">{{item.timeText}}</text>
+      </view>
+      <view class="record-line">
+        <text class="line-label">联系电话</text>
+        <text class="line-value phone" data-phone="{{item.phone}}" bindtap="onCallPhone">{{item.phone}}</text>
+      </view>
+      <view class="record-line">
+        <text class="line-label">使用人数</text>
+        <text class="line-value">{{item.peopleNum}}人</text>
+      </view>
+      <view class="record-line">
+        <text class="line-label">借用事由</text>
+        <text class="line-value">{{item.useReason}}</text>
+      </view>
+      <view class="record-line" wx:if="{{item.auditRemark}}">
+        <text class="line-label">审批备注</text>
+        <text class="line-value">{{item.auditRemark}}</text>
+      </view>
+
+      <!-- 审批按钮：仅待审批显示 -->
+      <view wx:if="{{item.status === 0}}" class="audit-actions">
+        <button class="btn-plain audit-btn reject" data-id="{{item._id}}" bindtap="onReject">驳回</button>
+        <button class="btn-primary audit-btn pass" data-id="{{item._id}}" bindtap="onApprove">通过</button>
+      </view>
+    </view>
+  </block>
+
+</view>

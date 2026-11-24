@@ -1,0 +1,122 @@
+/* app.wxss —— 全局样式（所有页面通用） */
+
+page {
+  background-color: #F6F7FB;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "PingFang SC",
+    "Microsoft YaHei", sans-serif;
+  font-size: 28rpx;
+  color: #1F2329;
+  box-sizing: border-box;
+}
+
+view, text, button, input, picker, textarea {
+  box-sizing: border-box;
+}
+
+.container {
+  padding: 24rpx;
+}
+
+/* 通用卡片 */
+.card {
+  background: #FFFFFF;
+  border-radius: 20rpx;
+  padding: 32rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 6rpx 24rpx rgba(43, 93, 70, 0.06);
+}
+
+/* 主按钮 */
+.btn-primary {
+  background: #2B5D46;
+  color: #FFFFFF;
+  border-radius: 48rpx;
+  font-size: 32rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  margin-top: 24rpx;
+}
+.btn-primary::after {
+  border: none;
+}
+
+/* 次按钮（描边） */
+.btn-plain {
+  background: #FFFFFF;
+  color: #2B5D46;
+  border: 2rpx solid #2B5D46;
+  border-radius: 48rpx;
+  font-size: 28rpx;
+  height: 76rpx;
+  line-height: 72rpx;
+}
+.btn-plain::after {
+  border: none;
+}
+
+/* 危险按钮 */
+.btn-danger {
+  background: #FFFFFF;
+  color: #D54941;
+  border: 2rpx solid #D54941;
+  border-radius: 48rpx;
+  font-size: 28rpx;
+  height: 76rpx;
+  line-height: 72rpx;
+}
+.btn-danger::after {
+  border: none;
+}
+
+/* 状态标签 */
+.tag {
+  display: inline-block;
+  padding: 6rpx 20rpx;
+  border-radius: 24rpx;
+  font-size: 24rpx;
+  line-height: 1.4;
+}
+.tag-pending { background: #FFF3E0; color: #E8860B; }
+.tag-pass    { background: #E6F4EC; color: #2B8A5B; }
+.tag-reject  { background: #FDECEB; color: #D54941; }
+.tag-cancel  { background: #EEF0F3; color: #8A8F99; }
+
+/* 空状态 */
+.empty {
+  text-align: center;
+  padding: 120rpx 0;
+  color: #9AA0A8;
+  font-size: 28rpx;
+}
+.empty-icon {
+  font-size: 96rpx;
+  display: block;
+  margin-bottom: 20rpx;
+}
+
+/* 表单行 */
+.form-row {
+  display: flex;
+  align-items: flex-start;
+  padding: 26rpx 0;
+  border-bottom: 2rpx solid #F0F1F3;
+}
+.form-row:last-child {
+  border-bottom: none;
+}
+.form-label {
+  width: 180rpx;
+  flex-shrink: 0;
+  color: #646A73;
+  font-size: 28rpx;
+  line-height: 1.6;
+}
+.form-label .required {
+  color: #D54941;
+  margin-right: 4rpx;
+}
+.form-content {
+  flex: 1;
+  font-size: 28rpx;
+  color: #1F2329;
+}
